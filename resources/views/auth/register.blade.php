@@ -1,22 +1,24 @@
 @extends('app')
 @section('content')
-<div class="container-fluid">
+
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
-				<div class="panel-heading">Register</div>
-				<div class="panel-body">
-					
+
+				
+				<div class="col-md-8 col-md-offset-2">
+					<ul class = "list-group">
 								@foreach ($registered_user as $Registered_user)
-									<div>
-										{{ $Registered_user->Name}}
-									</div>
+																
+										<li class = "list-group-item">{{ $Registered_user->Name}}</li>	
+
+								<br>
+									
 								@endforeach
-						
-								<br>
-								<br>
-								<br>
-								<br>
+
+					</ul>
+					</div>
+					
+
 					<form class="form-horizontal" role="form" method="POST" action="{{ url('/').'/reg/store'}}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -81,9 +83,6 @@
 							</div>
 						</div>
 					</form>
-				</div>
 			</div>
 		</div>
-	</div>
-</div>
 @stop
