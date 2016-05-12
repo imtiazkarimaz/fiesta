@@ -24,8 +24,14 @@ Route::get('/','mainPageController@show');
     
    Route::get('/reg', function()
   {
-      return view('auth/register');
+      $registered_user = App\Registered_user::all();
+      //return 'hi';
+     return view('auth/register',compact('registered_user'));
   });
+
+
+
+
 
    Route::post('/reg/store',function(){
     
@@ -38,6 +44,7 @@ Route::get('/','mainPageController@show');
         $registered_user->Email=Input::get('email');
         $registered_user->password=Input::get('password');
         $registered_user->save();
+        return back();
         //return view ('auth/register')
 
     
