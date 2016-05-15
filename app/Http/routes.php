@@ -42,13 +42,17 @@ Route::get('/','mainPageController@show');
         $registered_user->DOB=Input::get('DOB');
         $registered_user->Gender= Input::get('gender');
         $registered_user->Email=Input::get('email');
-        $registered_user->password=Input::get('password');
+        $registered_user->password=bcrypt(Input::get('password'));
         $registered_user->save();
         return back();
         //return view ('auth/register')
 
     
    });
+   Route::post('/login','loginController@postLogin');
+  // Route::get('/logged','loginController@logged' );
+
+
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

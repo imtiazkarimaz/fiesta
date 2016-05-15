@@ -29,18 +29,14 @@
                    
 	<div class="row">
 	
-            @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                            <ul>
-                                    @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                    @endforeach
-                            </ul>
-                    </div>
+          
+             @if (Session::has('fail'))
+                    <section class= "info-box fail">
+                        {{Session::get('fail')}}
+                    </section>
             @endif
 
-            <form class="form-horizontal" role="form" method="POST" action="/auth/login">
+            <form class="form-horizontal" role="form" method="POST" action="{{ url('/').'/login'}}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="form-group">
@@ -77,6 +73,7 @@
                                     <button type="submit" class="btn btn-success" style="margin-right: 2px;">
                                             Login
                                     </button>
+                                    <input type="hidden" name="_token" value="{{ Session::token() }}" />
                             </div>
                         <a href="/password/email" style="color: blue">Forgot Password?</a>
                     </div>

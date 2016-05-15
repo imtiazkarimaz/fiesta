@@ -3,7 +3,7 @@
 
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-
+			<h3>Database:</h1>
 				
 				<div class="col-md-8 col-md-offset-2">
 					<ul class = "list-group">
@@ -16,7 +16,7 @@
 								@endforeach
 
 					</ul>
-					</div>
+				</div>
 					
 
 					<form class="form-horizontal" role="form" method="POST" action="{{ url('/').'/reg/store'}}">
