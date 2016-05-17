@@ -7,19 +7,28 @@
 				
 				<div class="col-md-8 col-md-offset-2">
 					<ul class = "list-group">
-								@foreach ($registered_user as $Registered_user)
+								
+
 																
-										<li class = "list-group-item">{{ $Registered_user->Name}}</li>	
+										<li class = "list-group-item"></li>	
 
 								<br>
-									
-								@endforeach
+											
 
 					</ul>
 				</div>
-					
+					@if(count($errors) > 0)
+						<div>
+							<ul>
+								@foreach($errors->all() as $error)
+									{{ $error }}
+								@endforeach
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/').'/reg/store'}}">
+							</ul>	
+
+						</div>
+					@endif
+					<form class="form-horizontal" method="POST" action="{{ url('/').'/reg/store'}}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
@@ -78,6 +87,7 @@
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary" value ="add">
+
 									Register
 								</button>
 							</div>

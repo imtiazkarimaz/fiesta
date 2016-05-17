@@ -11,50 +11,46 @@
 |
 */
 use Illuminate\Support\Facades\Input;
-
-Route::get('/','mainPageController@show');
-// Route::get('/','eventController@create');
+use App\Http\Controllers;
 
 
-/* Route::get('/', function()
-  {
-      return view('mainPage/mainPageView');
-  });
-  */
+
+
+
+  
+    Route::get('/','mainPageController@show')->middleware(['web']);
+    Route::get('/reg', 'SignupController@showAll')->middleware(['web']);
+
+
+
+
+   Route::post('/reg/store','SignupController@createMethod')->middleware(['web']);
+
+
+    Route::post('/login','loginController@postLogin')->middleware(['web']);
+   //Route::get('/logged','loginController@logged' );
+
+  // Route::get('/Logadmin','loginController@logged');
+   //Route::post('/login', function(){
+        //if (Input::get('email')=='admin@admin.com')
+        //{
+          //  Route::post('/login/admin', 'loginController@adminCheck');
+        //} else {
+       //     Route::post('/login/user', 'loginController@postLogin');
+     //   }
+   // });
+
+   Route::get('/admin','adminController@index');
+
+
+
+
+    //
     
-   Route::get('/reg', function()
-  {
-      $registered_user = App\Registered_user::all();
-      //return 'hi';
-     return view('auth/register',compact('registered_user'));
-  });
 
 
 
 
 
-   Route::post('/reg/store',function(){
-    
-       $registered_user = new App\Registered_user;
-       $registered_user->Name= Input::get('name');
-        $registered_user->Contact_number= Input::get('ContactNumber');
-        $registered_user->Address=Input::get('Address');
-        $registered_user->DOB=Input::get('DOB');
-        $registered_user->Gender= Input::get('gender');
-        $registered_user->Email=Input::get('email');
-        $registered_user->password=bcrypt(Input::get('password'));
-        $registered_user->save();
-        return back();
-        //return view ('auth/register')
-
-    
-   });
-   Route::post('/login','loginController@postLogin');
-  // Route::get('/logged','loginController@logged' );
 
 
-
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);

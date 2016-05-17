@@ -2,6 +2,10 @@
 @section('content')
 
 <p align="justify">
-{{ $user->Name}} 
+
+@if(Auth::check())
+	
+		{{ $user->Name}}
+ @endif
 </p>
 @stop

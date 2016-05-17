@@ -1,4 +1,4 @@
-@include('/mainPage/headerView')
+include('/mainPage/headerView')
 
 <body id="page-top" class="index">
 @include('/mainPage/navBar')
