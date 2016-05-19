@@ -6,6 +6,8 @@ use App;
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Validation;
+use App\Registered_user;
+use DB;
 
 
 class SignupController extends Controller {
@@ -47,8 +49,13 @@ class SignupController extends Controller {
 		
 
 		]);
-
-
+		$email = $request->input('email');
+		//$registered_user = Registered_user::where('Email', '=', $request->get('email'))->first();
+		$user = DB::table('registered_user')->where('email', $email)->first();
+		if ($user != null) {
+		   // user doesn't exist
+			return "hi";
+		}
 	//	$rules = array(
         //'name'             => 'required'                        // just a normal required validation
         //'email'            => 'required|email|unique:ducks',     // required and must be unique in the ducks table

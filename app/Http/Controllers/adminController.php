@@ -4,6 +4,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use DB;
+use App\Registered_user;
 
 class adminController extends Controller {
 
@@ -12,20 +14,39 @@ class adminController extends Controller {
 	 *
 	 * @return Response
 	 */
+
+
+	public function view(Request $request){
+		//return "hi";
+		//return redirect('/admin');//->with('request' => '$request');
+		
+		$registered_user = Registered_user::all();
+		return view('admin.index',compact('registered_user'));
+	
+
+	}
 	public function index(Request $request)
 	{
 		//
+
 		//if (Auth::check()) {
 		    // The user is logged in...
 			//if('admin'=='karim'){
 			///	echo 'hi';
 			//}
+
 		if(!Auth::attempt(['email' => 'admin@admin.com' ,'password' => $request['password']])){
 				return redirect()->back()->with(['fail' => 'dont use admins email ']);
 		}
+
+		$password = '1';
+		return redirect('admin');
+		//return $password;
+		//return "hi";
 		//return redirect('/admin');
-		    return view('admin.index');
-		//}
+		//$registered_user = Registered_user::all();
+		//return view('admin.index',compact('registered_user'));
+	
 
 	}
 
@@ -55,9 +76,29 @@ class adminController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($User_id)
 	{
 		//
+		//$registered_user = DB::table('registered_user')->where('User_id', $User_id)->first();
+
+		//$registered_user = Registered_user::find($User_id);
+ 		//return view('admin.show', compact('registered_user'));
+ 		//$users = DB::table('users')
+          //  ->join('contacts', 'users.id', '=', 'contacts.user_id')
+            //->join('orders', 'users.id', '=', 'orders.user_id')
+            //->select('users.*', 'contacts.phone', 'orders.price')
+            //->get();
+
+		$event=DB::table('event')
+		->join('event_host', 'event.Event_id', '=', 'event_host.Event_id')
+        ->join('registered_user', function ($join) use ($User_id) {
+            $join->on('registered_user.User_id', '=', 'event_host.User_id')
+                 ->where('event_host.User_id', '=', $User_id);
+        })
+        ->get();
+        return view('admin.show', compact('event'));
+		
+
 	}
 
 	/**
@@ -69,6 +110,7 @@ class adminController extends Controller {
 	public function edit($id)
 	{
 		//
+		return $id;
 	}
 
 	/**
@@ -80,6 +122,7 @@ class adminController extends Controller {
 	public function update($id)
 	{
 		//
+		return $id;
 	}
 
 	/**

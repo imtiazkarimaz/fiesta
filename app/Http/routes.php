@@ -27,20 +27,16 @@ use App\Http\Controllers;
    Route::post('/reg/store','SignupController@createMethod')->middleware(['web']);
 
 
-    Route::post('/login','loginController@postLogin')->middleware(['web']);
+  Route::post('/login','loginController@postLogin')->middleware(['web']);
+
+  Route::get('/admin/{User_id}','adminController@show')->middleware(['web']);
+  Route::get('/admin/events/{Event_id}','adminController@edit')->middleware(['web']);
    //Route::get('/logged','loginController@logged' );
 
   // Route::get('/Logadmin','loginController@logged');
-   //Route::post('/login', function(){
-        //if (Input::get('email')=='admin@admin.com')
-        //{
-          //  Route::post('/login/admin', 'loginController@adminCheck');
-        //} else {
-       //     Route::post('/login/user', 'loginController@postLogin');
-     //   }
-   // });
+  
 
-   Route::get('/admin','adminController@index');
+   Route::get('/admin','adminController@view');
 
 
 

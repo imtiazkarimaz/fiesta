@@ -64,7 +64,7 @@ class loginController extends adminController{
 				
 			}
 			if($request->email!='admin@admin.com'){
-					$email = $request->input('email');
+				$email = $request->input('email');
 				$registered_user = new Registered_user;
 				$user = DB::table('registered_user')->where('email', $email)->first();
 				return view('logged',compact('user'));
