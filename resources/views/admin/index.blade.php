@@ -4,7 +4,7 @@
 
 
 	
-		
+		@if(Auth::check())
  
 	
 		<h1>show all registered users</h1>
@@ -24,7 +24,7 @@
 		@endforeach
 
 
-
+		 @endif
 	
 
 

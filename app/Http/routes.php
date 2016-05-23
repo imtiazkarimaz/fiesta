@@ -31,12 +31,15 @@ use App\Http\Controllers;
 
   Route::get('/admin/{User_id}','adminController@show')->middleware(['web']);
   Route::get('/admin/events/{Event_id}','adminController@edit')->middleware(['web']);
+
+  Route::get('/admin/events/feature/{Event_id}','adminController@feature')->middleware(['web']);
+   Route::get('/admin/events/unfeature/{Event_id}','adminController@unfeature')->middleware(['web']);
    //Route::get('/logged','loginController@logged' );
 
   // Route::get('/Logadmin','loginController@logged');
-  
-
-   Route::get('/admin','adminController@view');
+  Route::get('/admin','adminController@login');
+  Route::post('/admin/login','adminController@postLogin');
+   //Route::get('/admin/users','adminController@view');
 
 
 
