@@ -33,6 +33,15 @@ class adminController extends Controller {
 
 
 	}
+	public function logout()
+	{
+		//
+		echo "hi";
+		return "hi";
+		//Auth::logout();
+	
+		//return redirect()->action('mainPageController@show');
+	}
 		
 	public function postLogin(Request $request){	
 	$this->validate($request,[
@@ -189,6 +198,8 @@ class adminController extends Controller {
 	public function destroy($id)
 	{
 		//
+		$event = Event::where('Event_id',$id)->first();
+		return $id;
 	}
 
 }

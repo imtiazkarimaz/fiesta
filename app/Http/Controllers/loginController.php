@@ -63,6 +63,7 @@ class loginController extends adminController{
 				return redirect()->back()->with(['fail' => 'Could not log you in !']);
 				
 			}
+			
 			if($request->email!='admin@admin.com'){
 				$email = $request->input('email');
 				$registered_user = new Registered_user;
@@ -128,9 +129,12 @@ class loginController extends adminController{
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function logout()
 	{
 		//
+		Auth::logout();
+	
+		return redirect()->action('mainPageController@show');
 	}
 
 	/**

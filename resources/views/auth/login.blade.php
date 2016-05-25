@@ -80,7 +80,7 @@
             </form>
 			
 	</div>
-
+        <a href="{{ url('/').'/admin'}}">admin</a>
 
                
                   
@@ -106,5 +106,6 @@
         </div>
 
       </div>
+
 </section>
 @endsection
