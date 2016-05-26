@@ -44,10 +44,16 @@ class adminController extends Controller {
 	}
 		
 	public function postLogin(Request $request){	
+
 	$this->validate($request,[
 				'email' => 'required',
 				'password' => 'required'
 				]);
+
+	if($request['email']!= 'admin@admin.com'){
+		return redirect()->back()->with(['fail' => 'Could not log you in warning!']);
+			
+	}
 	if(!Auth::attempt(['email' => 'admin@admin.com','password' => $request['password']])){
 			return redirect()->back()->with(['fail' => 'Could not log you in warning!']);
 				
@@ -56,6 +62,7 @@ class adminController extends Controller {
 		
 		$registered_user = Registered_user::all();
 		return view('admin.index',compact('registered_user'));
+
 
 	}
 	public function index(Request $request)
@@ -72,7 +79,7 @@ class adminController extends Controller {
 				return redirect()->back()->with(['fail' => 'dont use admins email ']);
 		}
 
-		$password = '1';
+		//$password = '1';
 		return redirect('admin');
 		//return $password;
 		//return "hi";

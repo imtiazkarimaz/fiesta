@@ -153,9 +153,20 @@ class loginController extends adminController{
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function showEvents($user)
 	{
 		//
+		$User_id = $user;
+		$event=DB::table('event')
+		->join('event_host', 'event.Event_id', '=', 'event_host.Event_id')
+        ->join('registered_user', function ($join) use ($User_id) {
+            $join->on('registered_user.User_id', '=', 'event_host.User_id')
+                 ->where('event_host.User_id', '=', $User_id);
+        })
+        ->get();
+
+       return view('events', compact('event'));
+		
 	}
 
 	/**

@@ -28,6 +28,7 @@ use App\Http\Controllers;
 
 
   Route::post('/login','loginController@postLogin')->middleware(['web']);
+  Route::get('/events/{user}','loginController@showEvents')->middleware(['web']);
 
   Route::get('/admin/{User_id}','adminController@show')->middleware(['web']);
   Route::get('/admin/events/{Event_id}','adminController@edit')->middleware(['web']);
