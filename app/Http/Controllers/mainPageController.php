@@ -1,17 +1,16 @@
-<?php namespace App\Http\Controllers;
+<?php
 
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use DB;
 use App\Registered_user;
 use App\Event;
-
-class mainPageController extends Controller {
-
-    
+class mainPageController extends Controller
+{
+    //
     public function show()
     {
         

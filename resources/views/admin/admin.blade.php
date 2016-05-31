@@ -2,7 +2,7 @@
 
 @section('content')
 
-
+            <label>Admin Page</label>
              @if (Session::has('fail'))
                     <section class= "info-box fail">
                         {{Session::get('fail')}}
