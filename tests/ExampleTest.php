@@ -8,7 +8,7 @@ use App\Event;
 
 class ExampleTest extends TestCase
 {
-    use DatabaseTransactions;
+    //use DatabaseTransactions;
     /**
      * A basic functional test example.
      *

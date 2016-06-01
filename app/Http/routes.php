@@ -11,29 +11,29 @@
 |
 */
 
-  Route::get('/','mainPageController@show')->middleware(['web']);
-  Route::get('/reg', 'SignupController@showAll')->middleware(['web']);
+ Route::get('/','mainPageController@show')->middleware(['web']);
+ Route::get('/reg', 'SignupController@showAll')->middleware(['web']);
 
+ Route::get('/req/{str}', 'searchController@searchinfo');
 
-
-
+ Route::get('/req/show/{id}', 'searchController@showinfo');
  Route::post('/reg/store','SignupController@createMethod')->middleware(['web']);
 
 
-Route::post('/login','loginController@postLogin')->middleware(['web']);
-Route::get('/events/{user}','loginController@showEvents')->middleware(['web']);
+ Route::post('/login','loginController@postLogin')->middleware(['web']);
+ Route::get('/events/{user}','loginController@showEvents')->middleware(['web']);
 
-Route::get('/admin/{User_id}','adminController@show')->middleware(['web']);
-Route::get('/admin/events/{Event_id}','adminController@edit')->middleware(['web']);
+ Route::get('/admin/{User_id}','adminController@show')->middleware(['web']);
+ Route::get('/admin/events/{Event_id}','adminController@edit')->middleware(['web']);
 
-Route::get('/admin/events/feature/{Event_id}','adminController@feature')->middleware(['web']);
+ Route::get('/admin/events/feature/{Event_id}','adminController@feature')->middleware(['web']);
  Route::get('/admin/events/unfeature/{Event_id}','adminController@unfeature')->middleware(['web']);
  Route::get('/admin/events/delete/{Event_id}','adminController@destroy')->middleware(['web']);
  //Route::get('/logged','loginController@logged' );
 
 // Route::get('/Logadmin','loginController@logged');
-Route::get('/admin','adminController@login');
-Route::post('/admin/login','adminController@postLogin');
+ Route::get('/admin','adminController@login');
+ Route::post('/admin/login','adminController@postLogin');
 //Route::get('/admin/logout','adminController@logout');
-Route::get('/logout','loginController@logout');
+ Route::get('/logout','loginController@logout');
  //Route::get('/admin/users','adminController@view');

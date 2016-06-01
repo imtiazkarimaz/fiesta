@@ -159,7 +159,7 @@ class adminController extends Controller
     		//return $event;
     		$event->Featured =1;
     		$event->update();
-              return back();
+            return back();
     		//return $id;
     	}
 
