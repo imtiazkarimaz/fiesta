@@ -16,8 +16,9 @@ class searchController extends Controller
         public function searchinfo($str)
         {
         	//$str_given = array('abcdeggg', 'fghijkggg', 'mnopqrggg', 'stuvwxggg', 'abcujnggg');
+       
         	$str_given=DB::table('Event')->pluck('Ename');
-            if (strlen($str)>0) {
+            if (strlen($str)>1) {
     		  for($i=0;$i<count($str_given);$i++)
     		  {
     		      if(strstr($str_given[$i], $str)){
@@ -28,6 +29,8 @@ class searchController extends Controller
     		   	}
     		  
     		  }
+    		}
+    		if (strlen($str)==1) {
     		 $str = ucfirst($str);  
     		  for($i=0;$i<count($str_given);$i++)
     		  {
@@ -35,6 +38,7 @@ class searchController extends Controller
     		       $event = Event::where('Ename',$str_given[$i])->first();
     		       $id = $event->Event_id;
     		       echo '<a href="/fiesta/public/req/show/'. $id. '">'. $str_given[$i]. '</a><br>';
+    		      
     		    }
     		 }
             }else {
