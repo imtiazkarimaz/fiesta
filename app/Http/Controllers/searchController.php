@@ -7,6 +7,14 @@ use App\Event;
 class searchController extends Controller
 {
     //
+
+        public function showinit(){
+
+            return view("search");
+        }
+
+
+
         public function searchinfo($str)
         {
         	//$str_given = array('abcdeggg', 'fghijkggg', 'mnopqrggg', 'stuvwxggg', 'abcujnggg');

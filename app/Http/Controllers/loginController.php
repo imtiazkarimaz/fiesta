@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Registered_user;
 use DB;
 use Illuminate\Contracts\Validation;
+use Session;
 class loginController extends Controller
 {
     //
@@ -23,6 +24,15 @@ class loginController extends Controller
     		// return redirect("/admin");
     		//return "hi";
     	}
+        public function home($user_id){
+            
+            
+            $user = Registered_user::where('user_id',$user_id)->first();
+            return view('logged',compact('user') );
+            //if(!Auth::guest()) return
+            // return redirect("/admin");
+            //return "hi";
+        }
     	public function adminCheck(Request $request){
 
     		//$this->validate($request,[
@@ -61,14 +71,16 @@ class loginController extends Controller
     				
     			}
     			
-    			if($request->email!='admin@admin.com'){
-    				$email = $request->input('email');
-    				$registered_user = new Registered_user;
-    				$user = DB::table('registered_user')->where('email', $email)->first();
-    				return view('logged',compact('user'));
-    			}
+    			Session::save();
+    			$email = $request->input('email');
+    			$registered_user = new Registered_user;
+    			$user = DB::table('registered_user')->where('email', $email)->first();
+                $value = $user->User_id;
+                Session::put('key', $value);
+    		    return view('logged_mainPageView',compact('user') );
+    			
     			//return redirect()->back()->with(['fail' => 'Could not log you in !']);
-    			return $this->index($request);
+    			
     			//return redirect()->action('adminController@index');//, ['password' => $request->password]);
     		//return redirect('/admin')->with(['admin' => $request);
     			//$rules = [
